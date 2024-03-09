@@ -32,8 +32,6 @@ form.appendChild(label);
 form.appendChild(numSquaresInput);
 form.appendChild(submitButton);
 
-
-
 // append form
 const header = document.querySelector("header");
 header.after(form)
@@ -114,7 +112,7 @@ submitButton.addEventListener("click", (event) => {
 })
 
 // canvas fill
-function canvasFill() {
+function fillCanvas() {
   for (let cell of allCells) {
     cell.style.background = currentColor.style.background
   }

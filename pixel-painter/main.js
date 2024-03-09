@@ -1,24 +1,40 @@
 // number of squares across
+// form
 const form = document.createElement("form");
-const numSquaresInput = document.createElement("input");
-numSquaresInput.setAttribute("type", "number" );
-numSquaresInput.setAttribute("min", "1" );
-numSquaresInput.setAttribute("max", "20" );
-numSquaresInput.setAttribute("placeholder", "Number of Squares");
-numSquaresInput.style.width = "100px"
-numSquaresInput.value = "10"
-
-const submitButton = document.createElement("button");
-submitButton.innerText = "Submit";
-
-
-form.appendChild(numSquaresInput);
-form.appendChild(submitButton);
-
 form.style.display = "block"
 form.style.marginBottom = "20px"
 form.style.textAlign = "center"
 
+// label grid size
+const label = document.createElement("label");
+label.setAttribute("for", "grid-size");
+label.innerText = "Set Grid Size:";
+label.style.marginRight = "10px";
+label.style.fontWeight = "bold";
+
+// input box
+const numSquaresInput = document.createElement("input");
+numSquaresInput.setAttribute("type", "number" );
+numSquaresInput.setAttribute("name", "grid-size" );
+numSquaresInput.setAttribute("min", "1" );
+numSquaresInput.setAttribute("max", "20" );
+numSquaresInput.setAttribute("placeholder", "Number of Squares");
+numSquaresInput.value = "10"
+numSquaresInput.style.width = "100px"
+numSquaresInput.style.marginRight = "10px"
+
+// submit button
+const submitButton = document.createElement("button");
+submitButton.innerText = "New Canvas";
+
+
+form.appendChild(label);
+form.appendChild(numSquaresInput);
+form.appendChild(submitButton);
+
+
+
+// append form
 const header = document.querySelector("header");
 header.after(form)
 
@@ -91,11 +107,13 @@ function generateCanvas() {
 
 generateCanvas();
 
+// new canvas button
 submitButton.addEventListener("click", (event) => {
   event.preventDefault()
   generateCanvas(); 
 })
 
+// canvas fill
 function canvasFill() {
   for (let cell of allCells) {
     cell.style.background = currentColor.style.background

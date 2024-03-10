@@ -1,4 +1,5 @@
-function load() {
+
+
 /*
 wrapped in a load function because when I hit the rest button something is keeping my highlight function on line 70 from triggering after the first time.
 I think it has something to do with the reset button.
@@ -29,19 +30,23 @@ function makeBoard() {
 
 makeBoard();
 
+
 // get squares
 const squares = document.querySelectorAll(".square");
 
 // get spotNodes and update spots
-let aNode = document.querySelector(".a");
-let bNode = document.querySelector(".b");
-let cNode = document.querySelector(".c");
-let dNode = document.querySelector(".d");
-let eNode = document.querySelector(".e");
-let fNode = document.querySelector(".f");
-let gNode = document.querySelector(".g");
-let hNode = document.querySelector(".h");
-let iNode = document.querySelector(".i");
+let aNode, bNode, cNode, dNode, eNode, fNode, gNode, hNode, iNode
+function getSquareNodes() {  
+  aNode = document.querySelector(".a");
+  bNode = document.querySelector(".b");
+  cNode = document.querySelector(".c");
+  dNode = document.querySelector(".d");
+  eNode = document.querySelector(".e");
+  fNode = document.querySelector(".f");
+  gNode = document.querySelector(".g");
+  hNode = document.querySelector(".h");
+  iNode = document.querySelector(".i");
+}
 
 let a, b, c, d, e, f, g, h, i;
 function updateSpots() {
@@ -114,17 +119,21 @@ function isGameOver() {
   }
 } 
 
-
 // reset board
 const button = document.querySelector("button");
 button.addEventListener("click", () => {
-  board.innerHTML = "";
-  // makeBoard()
-  load()
-  turns = 0;
-  isActive = true;
+  for (let square of squares) {
+    square.innerText = "";
+    square.style.background = "none"
+  }
+  loadGame();
 })
+
+function loadGame() {
+  isActive = true;
+  turns = 0;
+  getSquareNodes();
 
 }
 
-load()
+loadGame();

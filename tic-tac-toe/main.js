@@ -19,13 +19,18 @@ const squares = document.querySelectorAll(".square");
 
 let playerTurn = 0;
 
+// display players Turn
+const playerNode = document.querySelector(".player");
+playerNode.innerText = "X"
+
+
 function makeMove(square) {
   square.addEventListener("click", () => {
     if (square.classList.contains("empty")) {
       console.log("square is empty");
       square.classList.remove("empty");
-      playerTurn++;
-      square.innerText = playerTurn % 2 ? "X" : "O";
+      square.innerText = playerNode.innerText;
+      playerNode.innerText = playerNode.innerText === "X" ? "O" : "X";
     }
   })
 }

@@ -25,6 +25,12 @@ h1 {
   padding: 2em 0;
 }
 
+.turn, .player {
+  text-align: center;
+  color: plum;
+  font-size: 32px;
+}
+
 .square {
   height: 120px;
   width: 120px;

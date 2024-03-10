@@ -1,3 +1,5 @@
+let isActive = true;
+
 // get board
 const board = document.querySelector(".tic-tac-toe");
 const boardMap = {};
@@ -37,17 +39,18 @@ function hasWinner(square) {
   if (a && a === b && b === c ||
     d && d === e && e === f ||
     g && g === h && h === i ||
-
+    
     a && a === d && d === g ||
     b && b === e && e === h ||
     c && c === f && f === i ||
-
+    
     a && a === e && e === i ||
     c && c === e && e === g) {
       setTimeout(() => {
         alert(`${square.innerText} is the Winner!`)
       }, 250);
-    }
+      isActive = false;
+  }
 }
 
 // player turns
@@ -57,25 +60,19 @@ playerNode.innerText = "X"
 
 function makeMove(square) {
   square.addEventListener("click", (e) => {
-    if (square.classList.contains("empty")) {
-      square.classList.remove("empty");
-      square.innerText = playerNode.innerText;
-      updateSpots();
-      if (turns > 3) hasWinner(square);
-      playerNode.innerText = playerNode.innerText === "X" ? "O" : "X";
-      turns++;
-      isGameOver();
+    if (isActive) {
+      if (square.classList.contains("empty")) {
+        square.classList.remove("empty");
+        square.innerText = playerNode.innerText;
+        updateSpots();
+        if (turns > 3) hasWinner(square);
+        playerNode.innerText = playerNode.innerText === "X" ? "O" : "X";
+        turns++;
+        isGameOver();
+      }
     }
   })
 }
-
-// reset board
-const button = document.querySelector("button");
-button.addEventListener("click", () => {
-  board.innerHTML = "";
-  makeBoard()
-  turns = 0;
-})
 
 // turn game over alert
 function isGameOver() {
@@ -84,4 +81,12 @@ function isGameOver() {
       alert("Game is Over")
     }, 250);
   }
-}
+} 
+
+// reset board
+const button = document.querySelector("button");
+button.addEventListener("click", () => {
+  board.innerHTML = "";
+  makeBoard()
+  turns = 0;
+})

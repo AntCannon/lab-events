@@ -45,6 +45,9 @@ const wrapper = document.querySelector("#wrapper");
 wrapper.appendChild(fillButton);
 wrapper.style.textAlign = "center";
 
+// change palette height to fit-content for responsiveness
+document.querySelector("#palette").style.height = "fit-content";
+
 // change number of columns in canvas
 const canvas = document.querySelector("#canvas");
 

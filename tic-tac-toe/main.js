@@ -7,6 +7,7 @@ function makeBoard() {
     const square = document.createElement("div");
     square.classList.add("square");
     square.classList.add("empty");
+    square.classList.add(`${String.fromCharCode(97 + i)}`)
     makeMove(square);
     board.appendChild(square);
   }
@@ -16,6 +17,17 @@ makeBoard();
 
 // get squares
 const squares = document.querySelectorAll(".square");
+
+// check winner
+const boardMap = new Map();
+
+console.log([...squares.entries()][0][1].classList[2]);
+
+
+function hasWinner() {
+  
+}
+
 
 let turns = 0;
 
@@ -29,6 +41,7 @@ function makeMove(square) {
       square.classList.remove("empty");
       square.innerText = playerNode.innerText;
       playerNode.innerText = playerNode.innerText === "X" ? "O" : "X";
+
       turns++;
       isGameOver();
     }
@@ -46,6 +59,9 @@ button.addEventListener("click", () => {
 // game over alert
 function isGameOver() {
   if (turns === 9) {
-    alert("Game is Over");
+    setTimeout(() => {
+      alert("Game is Over")}, 250);
   }
 }
+
+

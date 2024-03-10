@@ -17,26 +17,35 @@ makeBoard();
 // get squares
 const squares = document.querySelectorAll(".square");
 
-let playerTurn = 0;
+let turns = 0;
 
 // display players Turn
 const playerNode = document.querySelector(".player");
 playerNode.innerText = "X"
 
-
 function makeMove(square) {
   square.addEventListener("click", () => {
     if (square.classList.contains("empty")) {
-      console.log("square is empty");
       square.classList.remove("empty");
       square.innerText = playerNode.innerText;
       playerNode.innerText = playerNode.innerText === "X" ? "O" : "X";
+      turns++;
+      isGameOver();
     }
   })
 }
 
+// reset board
 const button = document.querySelector("button");
 button.addEventListener("click", () => {
   board.innerHTML = "";
-  makeBoard();
+  makeBoard()
+  turns = 0;
 })
+
+// game over alert
+function isGameOver() {
+  if (turns === 9) {
+    alert("Game is Over");
+  }
+}

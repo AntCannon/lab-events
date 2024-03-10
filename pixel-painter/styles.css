@@ -71,8 +71,8 @@ header h1 {
 }
 
 #wrapper {
-  min-height: 100%;
-  margin-bottom: -60px;
+  min-height: fit-content;
+  /* margin-bottom: -60px; */
 }
 
 nav {

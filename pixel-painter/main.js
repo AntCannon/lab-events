@@ -39,6 +39,7 @@ header.after(form);
 // fillCanvas button
 const fillButton = document.createElement("button");
 fillButton.innerText = "Fill Canvas";
+fillButton.style.marginBottom = "50px"
 
 // append fillCanvas button
 const wrapper = document.querySelector("#wrapper");

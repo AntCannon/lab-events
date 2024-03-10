@@ -10,14 +10,7 @@ function makeBoard() {
   }
 }
 
-
-// - [ ] Call `makeBoard()` on page load so that 9 squares appear and the board is 3 x 3 squares.
 makeBoard();
-
-// - [ ] Write a function called `makeMove()` that is an event handler for the `div`s with the class of `square` that
-// - Checks if the clicked square has the class `empty`.
-// - If the square has the class empty add either an `X` or an `O` inside the square, remove the class `empty` and write some logic so that the next time this function is called the other player has a play (first play an X then an O, then an X...).
-// - Players should NOT be able to change a full square.
 
 let playerTurn = 0;
 
@@ -27,10 +20,13 @@ function makeMove() {
     square.addEventListener("click", () => {
       if (square.classList.contains("empty")) {
         console.log("square is empty");
-        square.innerText = "X";
+        square.classList.remove("empty");
+        playerTurn++;
+        square.innerText = playerTurn % 2 ? "X" : "O";
       }
     })
   }
 }
 
 makeMove();
+

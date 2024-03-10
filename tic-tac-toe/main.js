@@ -1,3 +1,10 @@
+function load() {
+/*
+wrapped in a load function because when I hit the rest button something is keeping my highlight function on line 70 from triggering after the first time.
+I think it has something to do with the reset button.
+*/
+
+
 let isActive = true;
 
 // get board node
@@ -26,15 +33,15 @@ makeBoard();
 const squares = document.querySelectorAll(".square");
 
 // get spotNodes and update spots
-aNode = document.querySelector(".a");
-bNode = document.querySelector(".b");
-cNode = document.querySelector(".c");
-dNode = document.querySelector(".d");
-eNode = document.querySelector(".e");
-fNode = document.querySelector(".f");
-gNode = document.querySelector(".g");
-hNode = document.querySelector(".h");
-iNode = document.querySelector(".i");
+let aNode = document.querySelector(".a");
+let bNode = document.querySelector(".b");
+let cNode = document.querySelector(".c");
+let dNode = document.querySelector(".d");
+let eNode = document.querySelector(".e");
+let fNode = document.querySelector(".f");
+let gNode = document.querySelector(".g");
+let hNode = document.querySelector(".h");
+let iNode = document.querySelector(".i");
 
 let a, b, c, d, e, f, g, h, i;
 function updateSpots() {
@@ -61,15 +68,18 @@ function hasWinner(square) {
   checkLine([[c, e, g], [cNode, eNode, gNode]], square);
 }
 
-// Helper Function - chek line for winner and highlight winning squares
+// Helper Function - check line for winner and highlight winning squares
 function checkLine([[sq1, sq2, sq3], sqNodesArr] ,square) {
   if (sq1 && sq1 === sq2 && sq2 === sq3) {
+    console.log(sqNodesArr)
     for (let sqN of sqNodesArr) {
+      console.log(sqN)
       sqN.style.background = "rebeccapurple";
+      console.log("highlight")
     }
     setTimeout(() => {
       alert(`${square.innerText} is the Winner!`)
-    }, 250);
+    }, 550);
     isActive = false;
   }
 }
@@ -97,18 +107,24 @@ function makeMove(square) {
 
 // turn game over alert
 function isGameOver() {
-  if (turns === 9) {
+  if (turns === 9 && isActive) {
     setTimeout(() => {
       alert("Game is Over");
-    }, 250);
+    }, 550);
   }
 } 
+
 
 // reset board
 const button = document.querySelector("button");
 button.addEventListener("click", () => {
   board.innerHTML = "";
-  makeBoard()
+  // makeBoard()
+  load()
   turns = 0;
   isActive = true;
 })
+
+}
+
+load()

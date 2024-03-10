@@ -1,3 +1,4 @@
+
 // - [ ] Write a function called `makeBoard()` that will generate 9 `div` with the class `empty` and another class `square`.
 function makeBoard() {
   const board = document.querySelector(".tic-tac-toe");
@@ -12,10 +13,12 @@ function makeBoard() {
 
 makeBoard();
 
+// get squares
+const squares = document.querySelectorAll(".square");
+
 let playerTurn = 0;
 
 function makeMove() {
-  const squares = document.querySelectorAll(".square");
   for (let square of squares) {
     square.addEventListener("click", () => {
       if (square.classList.contains("empty")) {
@@ -30,3 +33,10 @@ function makeMove() {
 
 makeMove();
 
+const button = document.querySelector("button");
+button.addEventListener("click", () => {
+  for (let square of squares) {
+    square.classList.add("empty");
+    square.innerText = "";
+  }  
+})
